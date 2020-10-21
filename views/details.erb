@@ -1,0 +1,20 @@
+<p>
+        <%=post["post_text"]%>
+</p>
+
+    <img src="<%= post["image"] %>" alt="">
+
+    <p>
+    feeling <%= post["feeling"] %>
+    </p>
+
+<p>
+    posted by <%= find_user_by_id(post['user_id'])["name"] %>
+</p>
+
+<a href="/posts/<%=post['id']%>/edit">edit</a>
+
+<form action="/posts/<%=post['id']%>" method="post">
+    <input type="hidden" name="_method" value="delete">
+    <button>delete</button>
+</form>

@@ -1,0 +1,48 @@
+body {
+    background-image: url("/stylesheets/dog-bg.jpg");
+    background-repeat: repeat-x;
+    background-size: 100% 280px;
+    background-color: rgba(234, 248, 251, 1)
+}
+
+.heading {
+    font-family: 'Bungee Shade', cursive;
+    font-size: 120px;
+    margin-top: 40px;
+    margin-bottom: 10px;
+    padding: 20px;
+    margin-right: 150px;
+}
+
+.subheading {
+padding-bottom: 30px;
+}
+
+.nav {
+    text-decoration: none;
+    font-size: 20px;
+    color: black;
+    border: 1px solid black;
+    padding: 5px;
+}
+
+.nav:hover {
+    color: red
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+* {
+    font-family: 'Indie Flower', cursive;
+}
+
+img {
+    width: 200px;
+}
+
+.individual_posts {
+    border-bottom: 2px dashed black;
+}

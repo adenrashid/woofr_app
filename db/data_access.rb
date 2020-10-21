@@ -20,3 +20,15 @@ def create_post(post_text, image, feeling, user_id)
     sql = "insert into posts (post_text, image, feeling, user_id) values ($1, $2, $3, $4);"
     run_sql(sql, [post_text, image, feeling, user_id])
 end 
+
+def find_user_by_email(email)
+    sql = "SELECT * FROM users WHERE email = $1;"
+    results = run_sql(sql, [email])
+    return results[0]
+end 
+
+def find_post_by_id(id)
+    sql = "SELECT * FROM posts WHERE id = $1;"
+    results = run_sql(sql, [id])
+    return results[0]
+end 

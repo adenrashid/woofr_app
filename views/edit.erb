@@ -1,0 +1,16 @@
+<h1>edit post</h1>
+
+<form action="/posts/<%=post['id']%>" method="post">
+<input type="hidden" name="_method" value="patch">
+
+    <label for="">Woof!</label>
+    <input type="text" name="post_text" value="<%=post['post_text']%>">
+
+    <label for="">image</label>
+    <input type="text" name="image" value="<%=post['image']%>">
+
+    <label for="">feeling</label>
+    <input type="text" name="feeling" value="<%=post['feeling']%>">
+
+    <button>update</button>
+</form>
