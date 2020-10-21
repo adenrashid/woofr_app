@@ -1,0 +1,13 @@
+<h1>Home Page / NewsFeed</h1>
+
+<a href="/posts/new">Post a new Woof!</a>
+
+<% posts.each do |post| %>
+
+    <p>
+        <%=post["post_text"]%>
+        </a>
+    </p>
+    <img src="<%= post["image"] %>" alt="">
+
+<% end %> 
