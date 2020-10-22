@@ -16,9 +16,9 @@ def find_user_by_id(id)
     return results[0]
 end 
 
-def create_post(post_text, image, feeling, user_id)
-    sql = "INSERT INTO posts (post_text, image, feeling, user_id) VALUES ($1, $2, $3, $4);"
-    run_sql(sql, [post_text, image, feeling, user_id])
+def create_post(post_text, image, feeling, user_id, date_created, time_created)
+    sql = "INSERT INTO posts (post_text, image, feeling, user_id, date_created, time_created) VALUES ($1, $2, $3, $4, $5, $6);"
+    run_sql(sql, [post_text, image, feeling, user_id, date_created, time_created])
 end 
 
 def find_user_by_email(email)

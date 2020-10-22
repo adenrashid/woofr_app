@@ -26,3 +26,5 @@ ALTER TABLE users ADD bio TEXT;
 ALTER TABLE users ADD location VARCHAR(200);
 
 UPDATE users SET name = Bacio WHERE id=13;
+
+ALTER TABLE posts ADD COLUMN time_created TEXT;

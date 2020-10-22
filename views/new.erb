@@ -21,5 +21,8 @@
         <option type=text value="&#x1F415">&#x1F415;</option>
         <option type=text value="&#x1F43E">&#x1F43E;</option>
     </select>
-    <button>create</button>
+
+    <input type="hidden" name="date_created" value=<%= Time.now.strftime("%d-%m-%Y") %>>
+    <input type="hidden" name="time_created" value=<%= Time.now.strftime("%k:%M%p") %>>
+    <button>Woof Woof!</button>
 </form>

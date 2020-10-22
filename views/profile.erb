@@ -27,3 +27,7 @@
     <input type="text" name="location" value="<%= user['location'] %>">
 
     <button>update</button>
+
+<% if display_error %>
+    <%= error_message %>
+<% end %>

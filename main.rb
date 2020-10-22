@@ -2,6 +2,7 @@
 require 'sinatra'
 require 'sinatra/reloader' if development?
 require 'pg'
+require 'pry'
 require 'bcrypt'
 require_relative 'db/data_access'
 
@@ -43,7 +44,9 @@ get '/login' do
     redirect '/'
   end 
 
-  erb :login
+  erb :login, locals: {
+    display_error: false
+  }
 end 
 
 post '/signup' do 
@@ -60,8 +63,12 @@ post '/signup' do
   
     redirect '/'
   else 
-    redirect '/login'
-    erb :alert
+    error_message = 'Error: This email is already in use'
+
+    erb :login, locals: {
+      display_error: true, 
+      error_message: error_message
+    }
   end 
 
 end 
@@ -83,7 +90,7 @@ get '/posts/new' do
 end 
 
 post '/posts' do 
-  create_post(params['post_text'], params['image'], params['feeling'], current_user['id'])
+  create_post(params['post_text'], params['image'], params['feeling'], current_user['id'], params['date_created'], params['time_created'])
   redirect '/'
 end 
 
@@ -137,20 +144,31 @@ end
 
 get '/profile/:id' do 
   user = current_user()
+
   erb :profile, locals: {
-    user: user
-    }
+    user: user,
+    display_error: false 
+  }
 end 
 
 patch '/profile/:id' do 
-  session[:message] = 'hello'
+  user = current_user()
 
   if params["name"] == '' || params["email"] == '' || params["icon"] == '' || params['bio'] == '' || params['location'] == '' 
-    redirect "/profile/#{current_user()['id']}"
+    'hello'
+
+    error_message = 'Error: Field cannot be left blank'
+
+    erb :profile, locals: {
+      user: user,
+      display_error: true,
+      error_message: error_message
+    }
+
   else 
     sql = "UPDATE users SET name = $1, email = $2, icon = $3, bio = $4, location = $5 WHERE id = $6;"
     run_sql(sql, [params["name"], params["email"], params["icon"], params['bio'], params['location'], params['id']])  
-  end
 
-  redirect "/profile/#{params['id']}"
+    redirect "/profile/#{params['id']}"
+  end 
 end 

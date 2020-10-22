@@ -9,7 +9,7 @@
     </p>
 
 <p>
-<img src="<% find_user_by_id(post['user_id'])["icon"] %>" alt="">
+<img class="icon_img" src="<%= find_user_by_id(post['user_id'])["icon"] %>" alt="">
     posted by <%= find_user_by_id(post['user_id'])["name"] %>
 </p>
 
@@ -29,7 +29,7 @@
 <% comments.each do |comment| %>
 
     <p> 
-        <img src="<% find_user_by_id(comment['user_id'])['icon'] %>" alt=""> <%= comment['comment'] %> commented by <%= find_user_by_id(comment['user_id'])['name'] %> 
+        <img class="icon_img" src="<%= find_user_by_id(comment['user_id'])['icon'] %>" alt=""> <%= comment['comment'] %> - commented by <%= find_user_by_id(comment['user_id'])['name'] %> 
     </p>
 
 <% end %>

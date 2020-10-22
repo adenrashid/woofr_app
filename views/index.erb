@@ -12,8 +12,8 @@
     <p>
     feeling <%= post["feeling"] %>
     </p>
-    <img class="icon_img" src="<%= find_user_by_id(post['user_id'])['icon'] %>" alt="">
-    posted by <%= find_user_by_id(post['user_id'])["name"] %>
+        <img class="icon_img" src="<%= find_user_by_id(post['user_id'])['icon'] %>" alt="">
+        posted by <%= find_user_by_id(post['user_id'])["name"] %> at <%= find_post_by_id(post['id'])['time_created'] %> <%= find_post_by_id(post['id'])['date_created'] %>
     </p>
     </a>
 </div>
