@@ -14,3 +14,15 @@ CREATE TABLE users (
     password_digest TEXT 
 );
 
+CREATE TABLE comments (
+    id SERIAL PRIMARY KEY,
+    user_id INTEGER,
+    post_id INTEGER,
+    comment TEXT
+);
+
+ALTER TABLE users ADD icon TEXT;
+ALTER TABLE users ADD bio TEXT;
+ALTER TABLE users ADD location VARCHAR(200);
+
+UPDATE users SET name = Bacio WHERE id=13;

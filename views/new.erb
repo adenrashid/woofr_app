@@ -1,6 +1,6 @@
 <h1>Post a new Woof!</h1>
 
-<form action="/create_post" method="post">
+<form action="/posts" method="post">
     <label for="">Woof!</label>
     <input type="text" name="post_text">
 
@@ -8,7 +8,18 @@
     <input type="text" name="image">
 
     <label for="">Feeling</label>
-    <input type="text" name="feeling">
-    
+    <input type="hidden" name="feeling">
+    <select id="" name="feeling">
+        <option type=text value="&#x1F600">&#x1F600;</option>
+        <option type=text value="&#x1F60D">&#x1F60D;</option>
+        <option type=text value="&#x1F61B">&#x1F61B;</option>
+        <option type=text value="&#x1F918">&#x1F918;</option>
+        <option type=text value="&#x1F60E">&#x1F60E;</option>
+        <option type=text value="&#x1F62B">&#x1F62B;</option>
+        <option type=text value="&#x1F640">&#x1F640;</option>
+        <option type=text value="&#x1F62D">&#x1F62D;</option>
+        <option type=text value="&#x1F415">&#x1F415;</option>
+        <option type=text value="&#x1F43E">&#x1F43E;</option>
+    </select>
     <button>create</button>
 </form>

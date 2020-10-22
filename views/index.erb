@@ -7,15 +7,15 @@
     <p>
     <a href="/posts/<%=post['id']%>">
         <%=post["post_text"]%>
-    </a>
     </p>
     <img src="<%= post["image"] %>" alt="">
     <p>
     feeling <%= post["feeling"] %>
     </p>
-    <p>
+    <img class="icon_img" src="<%= find_user_by_id(post['user_id'])['icon'] %>" alt="">
     posted by <%= find_user_by_id(post['user_id'])["name"] %>
     </p>
+    </a>
 </div>
 
 <% end %> 

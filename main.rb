@@ -82,7 +82,7 @@ get '/posts/new' do
   erb :new
 end 
 
-post '/create_post' do 
+post '/posts' do 
   create_post(params['post_text'], params['image'], params['feeling'], current_user['id'])
   redirect '/'
 end 
@@ -99,10 +99,12 @@ get '/posts/:id' do
 
   post = find_post_by_id(params['id'])
   user = find_user_by_id(post['user_id'])
+  comments = run_sql("SELECT * FROM comments WHERE post_id = #{params['id']};")
   
   erb :details, locals: {
     post: post,
-    user: user
+    user: user, 
+    comments: comments
   }
 end 
 
@@ -126,4 +128,29 @@ delete '/posts/:id' do
   sql = "DELETE FROM posts WHERE id = $1;"
   run_sql(sql, [params['id']])
   redirect '/'
+end 
+
+post '/comment/:id' do 
+  create_comment(current_user['id'], params['id'], params['comment'])
+  redirect "/posts/#{params['id']}"
+end 
+
+get '/profile/:id' do 
+  user = current_user()
+  erb :profile, locals: {
+    user: user
+    }
+end 
+
+patch '/profile/:id' do 
+  session[:message] = 'hello'
+
+  if params["name"] == '' || params["email"] == '' || params["icon"] == '' || params['bio'] == '' || params['location'] == '' 
+    redirect "/profile/#{current_user()['id']}"
+  else 
+    sql = "UPDATE users SET name = $1, email = $2, icon = $3, bio = $4, location = $5 WHERE id = $6;"
+    run_sql(sql, [params["name"], params["email"], params["icon"], params['bio'], params['location'], params['id']])  
+  end
+
+  redirect "/profile/#{params['id']}"
 end 

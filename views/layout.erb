@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Hello World</title>
+  <title>WOOFR</title>
   <link rel='stylesheet' href='/stylesheets/main.css'>
   <link href="https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Bungee+Shade&display=swap" rel="stylesheet">
@@ -13,12 +13,17 @@
 <h2 class="subheading">Twitter for dogs</h2>
 <a href="/" class="nav">Home</a>
 <a href="/about" class="nav">About</a>
+
+<% if logged_in? %>
+  <a href="/profile/<%= current_user()['id'] %>" class="nav">Profile</a>
+<% end %>
+
 <br>
 <br>
 
 <% if logged_in? %>
-
-  logged in as <%= current_user['name'] %>
+  <img class="icon_img" src="<%= current_user()['icon'] %>" alt="">
+  logged in as <%= current_user['name'] %> 
   <br>
   <br>
 

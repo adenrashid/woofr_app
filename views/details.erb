@@ -9,12 +9,32 @@
     </p>
 
 <p>
+<img src="<% find_user_by_id(post['user_id'])["icon"] %>" alt="">
     posted by <%= find_user_by_id(post['user_id'])["name"] %>
 </p>
+
+<% if find_user_by_id(post['user_id'])["name"] == current_user['name'] %>
 
 <a href="/posts/<%=post['id']%>/edit">edit</a>
 
 <form action="/posts/<%=post['id']%>" method="post">
     <input type="hidden" name="_method" value="delete">
     <button>delete</button>
+</form>
+
+<% end %>
+
+<p>Comments:</p>
+
+<% comments.each do |comment| %>
+
+    <p> 
+        <img src="<% find_user_by_id(comment['user_id'])['icon'] %>" alt=""> <%= comment['comment'] %> commented by <%= find_user_by_id(comment['user_id'])['name'] %> 
+    </p>
+
+<% end %>
+
+<form action="/comment/<%=post['id']%>" method="post">
+    <input type="text" name="comment" id="">
+    <button>Comment</button>
 </form>

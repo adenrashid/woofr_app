@@ -17,7 +17,7 @@ def find_user_by_id(id)
 end 
 
 def create_post(post_text, image, feeling, user_id)
-    sql = "insert into posts (post_text, image, feeling, user_id) values ($1, $2, $3, $4);"
+    sql = "INSERT INTO posts (post_text, image, feeling, user_id) VALUES ($1, $2, $3, $4);"
     run_sql(sql, [post_text, image, feeling, user_id])
 end 
 
@@ -31,4 +31,9 @@ def find_post_by_id(id)
     sql = "SELECT * FROM posts WHERE id = $1;"
     results = run_sql(sql, [id])
     return results[0]
+end 
+
+def create_comment(user_id, post_id, comment)
+    sql = "INSERT INTO comments (user_id, post_id, comment) VALUES ($1, $2, $3);"
+    run_sql(sql, [user_id, post_id, comment])
 end 
