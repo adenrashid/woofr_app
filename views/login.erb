@@ -1,33 +1,39 @@
-<h1>login</h1>
+<div class="login_page">
+    <div class="login_form">
+        <h1 class="login">&#x1F43E; login</h1> 
+            <form action="/login" method="post">
+                <div class="login_email">
+                    <label for="">email</label>
+                    <input class="email_input" type="email" name="email" id="">
+                </div>
+                <div class="login_password">
+                    <label for="">password</label>
+                    <input class="password_input" type="password" name="password_digest" id="">
+                </div>
+                <button class="login_button">Log In!</button>
+            </form>
+    </div>
 
-<form action="/login" method="post">
-
-<label for="">email</label>
-<input type="email" name="email" id="">
-
-<label for="">password</label>
-<input type="password" name="password_digest" id="">
-
-<button>Log In!</button>
-</form>
-
-<h1>sign up</h1>
-
-<form action="/signup" method="post">
-
-<label for="">name</label>
-<input type="text" name="name" id="">
-
-<label for="">email</label>
-<input type="email" name="email" id="">
-
-<label for="">password</label>
-<input type="password" name="password_digest" id="">
-
-<button>Sign Me Up!</button>
-</form>
-
+    <div class="login_form">
+        <h1>&#x1F43E; sign up</h1>
+            <form action="/signup" method="post">
+                <div class="login_email">
+                    <label for="">name</label>
+                    <input class="name_input" type="text" name="name" id="">
+                </div>
+                <div class="login_email">
+                    <label for="">email</label>
+                    <input class="email_input" type="email" name="email" id="">
+                </div>
+                <div class="login_password">
+                    <label for="">password</label>
+                    <input class="password_input" type="password" name="password_digest" id="">
+                </div>
+                <button class="login_button">Sign Me Up!</button>
+            </form>
+    </div>
 
 <% if display_error %>
     <%= error_message %>
 <% end %>
+</div>

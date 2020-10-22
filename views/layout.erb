@@ -4,22 +4,21 @@
   <meta charset="UTF-8">
   <title>WOOFR</title>
   <link rel='stylesheet' href='/stylesheets/main.css'>
+  <link rel="icon" type="image/png" href="/stylesheets/favicon.png"/>
   <link href="https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Bungee+Shade&display=swap" rel="stylesheet">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
 <h1 class="heading">WOOFR</h1>
-<h2 class="subheading">Twitter for dogs</h2>
-<a href="/" class="nav">Home</a>
-<a href="/about" class="nav">About</a>
-
-<% if logged_in? %>
-  <a href="/profile/<%= current_user()['id'] %>" class="nav">Profile</a>
-<% end %>
-
-<br>
-<br>
+<h2 class="subheading"> &#x1F436; twitter for dogs. woof! </h2>
+<div class="nav">
+  <a href="/" class="button">Home</a>
+  <a href="/about" class="button">About</a>
+  <% if logged_in? %>
+    <a class="button" href="/profile/<%= current_user()['id'] %>" class="nav">Profile</a>
+  <% end %>
+</div>
 
 <% if logged_in? %>
   <img class="icon_img" src="<%= current_user()['icon'] %>" alt="">
@@ -39,7 +38,4 @@
   <%= yield %>
 
 </body>
-<footer>
-Created by Aden &copy; 2020 
-</footer>
 </html>
