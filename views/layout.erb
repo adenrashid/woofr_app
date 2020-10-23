@@ -20,11 +20,17 @@
   <% end %>
 </div>
 
-<% if logged_in? %>
-  <img class="icon_img" src="<%= current_user()['icon'] %>" alt="">
-  logged in as <%= current_user['name'] %> 
-  <br>
-  <br>
+<div class="loggedin-wrap">
+  <div class="loggedin">
+    <% if logged_in? %>
+      <img class="icon_img" src="<%= current_user()['icon'] %>" alt="">
+      <div class="loggedin_text"> 
+        logged in as <%= current_user['name'] %> 
+      </div>
+  </div>
+</div>
+<br>
+<br>
 
   <form action="/logout" method="post">
     <input type="hidden" name="_method" value="delete">

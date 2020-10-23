@@ -30,6 +30,16 @@
 
     <p> 
         <img class="icon_img" src="<%= find_user_by_id(comment['user_id'])['icon'] %>" alt=""> <%= comment['comment'] %> - commented by <%= find_user_by_id(comment['user_id'])['name'] %> 
+        <% if current_user["name"] == find_user_by_id(comment['user_id'])['name'] %>
+
+        <a href="/comment/<%=comment['id']%>/edit">edit</a>
+
+        <form action="/comment/<%=comment['id']%>" method="post">
+            <input type="hidden" name="_method" value="delete">
+            <button>delete</button>
+        </form>
+
+        <% end %>
     </p>
 
 <% end %>

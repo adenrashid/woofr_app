@@ -33,6 +33,12 @@ def find_post_by_id(id)
     return results[0]
 end 
 
+def find_comment_by_id(id)
+    sql = "SELECT * FROM comments WHERE id = $1;"
+    results = run_sql(sql, [id])
+    return results[0]
+end 
+
 def create_comment(user_id, post_id, comment)
     sql = "INSERT INTO comments (user_id, post_id, comment) VALUES ($1, $2, $3);"
     run_sql(sql, [user_id, post_id, comment])

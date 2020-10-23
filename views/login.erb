@@ -33,7 +33,16 @@
             </form>
     </div>
 
+<% if display_blank_error %>
+    <%= blank_fields_error %>
+<% end %>
+
 <% if display_error %>
     <%= error_message %>
 <% end %>
+
+<% if login_error %>
+    <%= login_error %>
+<% end %>
+
 </div>

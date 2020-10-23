@@ -1,11 +1,11 @@
      
 require 'sinatra'
-# require 'sinatra/reloader' if development?
+require 'sinatra/reloader' if development?
 require 'pg'
 require 'bcrypt'
 require_relative 'db/data_access'
 
-# also_reload 'db/data_access' if development?
+also_reload 'db/data_access' if development?
 
 enable :sessions
 
@@ -44,17 +44,28 @@ get '/login' do
   end 
 
   erb :login, locals: {
-    display_error: false
+    display_error: false,
+    display_blank_error: false,
+    login_error: false
   }
 end 
 
 post '/signup' do 
   password = BCrypt::Password.create("#{params['password_digest']}")
-
   sql = "SELECT * FROM users WHERE email = $1"
   run_sql(sql, [params['email']])
 
-  if run_sql(sql, [params['email']]).to_a == []  
+  if params['name'] == '' || params['email'] == '' || password == ''
+    
+    blank_fields_error = 'Error: You cannot leave a field empty'
+
+    erb :login, locals: {
+      display_blank_error: true, 
+      display_error: false,
+      login_error: false,
+      blank_fields_error: blank_fields_error
+    }
+  elsif run_sql(sql, [params['email']]).to_a == []  
     create_user(params['name'], params['email'], password)
     
     user = find_user_by_email(params['email'])
@@ -66,6 +77,8 @@ post '/signup' do
 
     erb :login, locals: {
       display_error: true, 
+      display_blank_error: false,
+      login_error: false,
       error_message: error_message
     }
   end 
@@ -73,10 +86,20 @@ post '/signup' do
 end 
 
 post '/login' do
-  user = find_user_by_email(params['email'])
+  sql = "SELECT * FROM users WHERE email = $1"
+  run_sql(sql, [params['email']])
 
-  if BCrypt::Password.new(user['password_digest']) == (params['password_digest'])
-    session[:user_id] = user['id']
+  if params['email'] == '' || run_sql(sql, [params['email']]).to_a == []
+
+    login_error = "Error: Account not found"
+
+    erb :login, locals: {
+      display_blank_error: false, 
+      display_error: false,
+      login_error: login_error
+    }
+  elsif BCrypt::Password.new(find_user_by_email(params['email'])['password_digest']) == (params['password_digest'])
+    session[:user_id] = find_user_by_email(params['email'])['id']
 
     redirect "/"
   else 
@@ -170,4 +193,28 @@ patch '/profile/:id' do
 
     redirect "/profile/#{params['id']}"
   end 
+end 
+
+get '/comment/:id/edit' do 
+  sql = "SELECT * FROM comments WHERE id = $1;"
+  results = run_sql(sql, [params['id']])
+
+  erb :edit_comment, locals: {
+    comment: results[0]
+  }
+end 
+
+patch '/comment/:id' do 
+  sql = "UPDATE comments SET comment = $1 WHERE id = $2;"
+  run_sql(sql, [params["comment"], params["id"]])
+
+  post_id = find_comment_by_id(params["id"])["post_id"]
+  redirect "/posts/#{post_id}"
+end 
+
+delete '/comment/:id' do 
+  sql = "DELETE FROM comments WHERE id = $1;"
+  run_sql(sql, [params['id']])
+  
+  redirect "/"
 end 
