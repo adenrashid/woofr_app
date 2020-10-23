@@ -89,7 +89,7 @@ post '/login' do
   sql = "SELECT * FROM users WHERE email = $1"
   run_sql(sql, [params['email']])
 
-  if params['email'] == '' || run_sql(sql, [params['email']]).to_a == []
+  if params['email'] == '' || params['password'] == '' || run_sql(sql, [params['email']]).to_a == []
 
     login_error = "Error: Account not found"
 
@@ -103,7 +103,11 @@ post '/login' do
 
     redirect "/"
   else 
-    erb :login
+    erb :login, locals: {
+      display_blank_error: false, 
+      display_error: false,
+      login_error: login_error
+    }
   end 
 end 
 

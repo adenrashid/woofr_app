@@ -13,6 +13,11 @@
                 <button class="login_button">Log In!</button>
             </form>
     </div>
+<div class="error">
+    <% if login_error %>
+        <%= login_error %>
+    <% end %>
+</div>
 
     <div class="login_form">
         <h1>&#x1F43E; sign up</h1>
@@ -33,16 +38,12 @@
             </form>
     </div>
 
-<% if display_blank_error %>
-    <%= blank_fields_error %>
-<% end %>
-
-<% if display_error %>
-    <%= error_message %>
-<% end %>
-
-<% if login_error %>
-    <%= login_error %>
-<% end %>
-
+<div class="error">
+    <% if display_blank_error %>
+        <%= blank_fields_error %>
+    <% end %>
+    <% if display_error %>
+        <%= error_message %>
+    <% end %>
+</div>
 </div>

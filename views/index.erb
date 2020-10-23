@@ -1,19 +1,21 @@
-<a href="/posts/new">Post a new Woof!</a>
+<div class="new_post_button">
+        <a href="/posts/new">Post a new Woof!</a>
+</div>
 
-<h2>See the latest posts from your doggo friends...</h2>
+<h2 class="newsfeed_heading">See the latest posts from your doggo friends...</h2>
 
 <% posts.reverse_each do |post| %>
 <div class="individual_posts">
-    <p>
-    <a href="/posts/<%=post['id']%>">
-        <%=post["post_text"]%>
-    </p>
-    <img src="<%= post["image"] %>" alt="">
-    <p>
-    feeling <%= post["feeling"] %>
-    </p>
-        <img class="icon_img" src="<%= find_user_by_id(post['user_id'])['icon'] %>" alt="">
-        posted by <%= find_user_by_id(post['user_id'])["name"] %> at <%= find_post_by_id(post['id'])['time_created'] %> <%= find_post_by_id(post['id'])['date_created'] %>
+    <div class="post_wrap">
+        <a href="/posts/<%=post['id']%>">
+        <img class="image" src="<%= post["image"] %>" alt="">
+        <p class="post_text"><%=post["post_text"]%></p>
+        <p class="feeling_text">feeling: <%= post["feeling"] %></p>
+    </div>    
+        <div class="postedby_wrap">
+            <img class="icon_img" src="<%= find_user_by_id(post['user_id'])['icon'] %>" alt="">
+            posted by <%= find_user_by_id(post['user_id'])["name"] %> at <%= find_post_by_id(post['id'])['time_created'] %> <%= find_post_by_id(post['id'])['date_created'] %>
+        </div>
     </p>
     </a>
 </div>

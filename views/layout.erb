@@ -26,19 +26,15 @@
       <img class="icon_img" src="<%= current_user()['icon'] %>" alt="">
       <div class="loggedin_text"> 
         logged in as <%= current_user['name'] %> 
+        <form action="/logout" method="post">
+        <input type="hidden" name="_method" value="delete">
+          <div class="logout_button_wrap">
+            <button class="logout_button">log out</button>
+          </div>
+        </form>
       </div>
   </div>
 </div>
-<br>
-<br>
-
-  <form action="/logout" method="post">
-    <input type="hidden" name="_method" value="delete">
-    <button>log out</button>
-  </form>
-
-  <br>
-
   <% end %>
 
   <%= yield %>
