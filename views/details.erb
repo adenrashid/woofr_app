@@ -1,50 +1,56 @@
-<p>
-        <%=post["post_text"]%>
-</p>
-
-    <img src="<%= post["image"] %>" alt="">
-
-    <p>
-    feeling <%= post["feeling"] %>
-    </p>
-
-<p>
-<img class="icon_img" src="<%= find_user_by_id(post['user_id'])["icon"] %>" alt="">
-    posted by <%= find_user_by_id(post['user_id'])["name"] %>
-</p>
+<div class="details_wrap">
+    <div class="post_wrap">
+        <img class="image" src="<%= post["image"] %>" alt="">
+        <p class="post_text"><%=post["post_text"]%></p>
+        <p class="feeling_text">feeling <%= post["feeling"] %></p>
+    </div>
+    <div class="postedby_wrap">
+        <img class="icon_img" src="<%= find_user_by_id(post['user_id'])["icon"] %>" alt="">
+        <p class="postedby_text"> posted by <%= find_user_by_id(post['user_id'])["name"] %> at <%= find_post_by_id(post['id'])['time_created'] %> <%= find_post_by_id(post['id'])['date_created'] %> </p>
+    </div>
 
 <% if find_user_by_id(post['user_id'])["name"] == current_user['name'] %>
 
-<a href="/posts/<%=post['id']%>/edit">edit</a>
-
-<form action="/posts/<%=post['id']%>" method="post">
-    <input type="hidden" name="_method" value="delete">
-    <button>delete</button>
-</form>
-
-<% end %>
-
-<p>Comments:</p>
-
-<% comments.each do |comment| %>
-
-    <p> 
-        <img class="icon_img" src="<%= find_user_by_id(comment['user_id'])['icon'] %>" alt=""> <%= comment['comment'] %> - commented by <%= find_user_by_id(comment['user_id'])['name'] %> 
-        <% if current_user["name"] == find_user_by_id(comment['user_id'])['name'] %>
-
-        <a href="/comment/<%=comment['id']%>/edit">edit</a>
-
-        <form action="/comment/<%=comment['id']%>" method="post">
+<div class="details_buttons_wrap">
+    <div class="details_buttons">
+        <a href="/posts/<%=post['id']%>/edit">edit</a>
+    </div>
+    <div>
+        <form action="/posts/<%=post['id']%>" method="post">
             <input type="hidden" name="_method" value="delete">
-            <button>delete</button>
+            <button class="details_buttons">delete</button>
         </form>
+    </div>
+</div>
+<% end %>
+</div>
 
+<div class="comments_wrap">
+<p class="comments">Comments:</p>
+<% comments.each do |comment| %>
+<div class="individual_comment_wrap">
+    <div class="individual_comment"> <img class="icon_img" src="<%= find_user_by_id(comment['user_id'])['icon'] %>" alt=""> <p class="comment_text"> <%= comment['comment'] %> - commented by <%= find_user_by_id(comment['user_id'])['name'] %> </p>
+
+<% if current_user["name"] == find_user_by_id(comment['user_id'])['name'] %>
+
+<div class="comment_buttons_wrap">
+<div class="comment_buttons">
+    <a href="/comment/<%=comment['id']%>/edit">edit</a>
+</div>
+<form action="/comment/<%=comment['id']%>" method="post">
+<input type="hidden" name="_method" value="delete">
+<button class="comment_buttons">delete</button>
+</form>
         <% end %>
-    </p>
-
+</div>
+</div>
+</div>
 <% end %>
 
-<form action="/comment/<%=post['id']%>" method="post">
-    <input type="text" name="comment" id="">
-    <button>Comment</button>
-</form>
+<div class="createnew_comment">
+    <form action="/comment/<%=post['id']%>" method="post">
+        <input type="text" name="comment" id="" style='width:100%'>
+        <button>Comment</button>
+    </form>
+</div>
+</div>

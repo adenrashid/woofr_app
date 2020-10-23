@@ -1,33 +1,37 @@
-<h1>welcome to your profile, <%= user['name'] %> </h1>
+<h1 class="profile_heading">welcome to your profile, <%= user['name'] %> </h1>
 
-<p>name: <%= user['name'] %> </p>
-<p>email: <%= user['email'] %> </p>
-<p>icon: <img src="<%= user['icon'] %>" alt=""> </p>
-<p>location: &#x1F3E0; <%= user['location'] %> </p>
-<p>bio: <%= user['bio'] %> </p>
+<div class="profile_details">
+    <p>name: <%= user['name'] %> </p>
+    <p>email: <%= user['email'] %> </p>
+    <p>icon: <img src="<%= user['icon'] %>" alt=""> </p>
+    <p>location: &#x1F3E0; <%= user['location'] %> </p>
+    <p>bio: <%= user['bio'] %> </p>
+</div>
 
-<h1>update or add to your existing your details!</h1>
+<h1 class="profile_heading">Update or add to your existing your details</h1>
 
+<div class="profile_details">
 <form action="/profile/<%= user['id'] %>" method="post">
 <input type="hidden" name="_method" value="patch">
 
-    <label for="">Name</label>
-    <input type="text" name="name" value="<%= user['name'] %>">
-
-    <label for="">Email</label>
-    <input type="email" name="email" value="<%= user['email'] %>">
-
-    <label for="">Icon</label>
-    <input type="text" name="icon" value="<%= user['icon'] %>">
-
-    <label for="">Bio</label>
-    <input type="text" name="bio" value="<%= user['bio'] %>">
-
-    <label for="">Location</label>
-    <input type="text" name="location" value="<%= user['location'] %>">
-
-    <button>update</button>
-
+    <label class="name_label" for="">Name:</label>
+    <input type="text" name="name" value="<%= user['name'] %>" style='width:100%'>
+<br>
+    <label class="email_label" for="">Email:</label>
+    <input type="email" name="email" value="<%= user['email'] %>" style='width:100%'>
+<br>
+    <label class="icon_label" for="">Icon:</label>
+    <input type="text" name="icon" value="<%= user['icon'] %>" style='width:100%'>
+<br>
+    <label class="bio_label" for="">Bio:</label>
+    <input type="text" name="bio" value="<%= user['bio'] %>" style='width:100%'>
+<br>
+    <label for="">Location:</label>
+    <input type="text" name="location" value="<%= user['location'] %>" style='width:100%'>
+<br>
+    <button>Update!</button>
+<br>
 <% if display_error %>
     <%= error_message %>
 <% end %>
+</div>

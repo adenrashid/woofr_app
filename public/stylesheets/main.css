@@ -109,24 +109,35 @@ body {
 .loggedin {
     margin: 20px 0 0 32px;
     font-size: 20px;
+    display: flex;
+    justify-content: space-between;
 }
 
 .loggedin-wrap {
     background-color: rgba(245, 203, 92, 1);
+    border-radius: 5px;
+}
+
+.logout_button_wrap {
+    text-align: right;
+    padding-right: 30px;
 }
 
 .loggedin_text {
     display: inline;
+    margin: auto auto auto 10px;
 }
 
-.logout_button_wrap {
+.loggedin_img_text {
+    display: flex;
 }
 
 .logout_button {
     font-size: 20px;
     background-color: rgba(232, 237, 223, 1);
     border-radius: 5px;
-    margin-bottom: 10px;
+    margin: 10px 0 10px 0;
+    width: 70px;
 }
 
 .logout_button:hover {
@@ -134,18 +145,18 @@ body {
     font-weight: bold;
     border: 2px solid black;
     color: rgba(207, 219, 213, 1);
+    cursor: pointer;
 }
 
 .icon_img {
     width: 10%;
-    margin-top: 10px;
     border-radius: 5px;
+    object-fit: cover;
 }
 
 .new_post_button {
     text-decoration: none;
     font-size: 30px;
-
     background-color: rgba(232, 237, 223, 1);
     border: 2px solid black;
     padding: 5px;
@@ -158,6 +169,9 @@ body {
     background-color: rgba(51, 53, 51, 1);
     font-weight: bold;
     border: 2px solid black;
+}
+
+.new_post_button:hover a {
     color: rgba(207, 219, 213, 1);
 }
 
@@ -186,7 +200,46 @@ img {
 
 .individual_posts {
     background-color: rgba(245, 203, 92, 1);
-    color: rgba(232, 237, 223, 1);
+}
+
+.details_wrap {
+    margin-top: 30px;
+    background-color: rgba(245, 203, 92, 1);
+}
+
+.details_buttons_wrap {
+    display: flex;
+    justify-content: space-around;
+}
+
+.details_buttons {
+    font-size: 20px;
+    color: black;
+    background-color: rgba(232, 237, 223, 1);
+    border: 2px solid black;
+    padding: 5px;
+    border-radius: 5px;
+    margin: 10px 10px 10px 30px;
+    text-align: center;
+}
+
+.details_buttons a {
+    width: 100px;
+}
+
+.details_buttons button {
+    width: 200px;
+}
+
+.details_buttons:hover {
+    background-color: rgba(51, 53, 51, 1);
+    font-weight: bold;
+    color: rgba(207, 219, 213, 1);
+    cursor: pointer;
+}
+
+.details_buttons:hover a {
+    color: rgba(207, 219, 213, 1);
 }
 
 .post_wrap {
@@ -196,10 +249,94 @@ img {
 }
 
 .postedby_wrap {
-    margin: 10px 0 0 30px;
+    display: flex;
 }
 
-footer {
-    padding-top: 40px;
-    bottom: 0;
+.postedby_text {
+    margin: auto auto auto 10px;
+}
+
+.comments_wrap {
+    background-color: rgba(232, 237, 223, 1);
+}
+
+.comments {
+    margin: 30px 10px 10px 30px; 
+    font-size: 20px;
+}
+
+.individual_comment {
+    display: flex; 
+    margin: 10px 10px 10px 30px;
+}
+
+.createnew_comment {
+    margin: 10px 10px 10px 30px;
+}
+
+.comment_buttons_wrap {
+    display: flex; 
+}
+
+.comment_buttons {
+    font-size: 15px;
+    background-color: rgba(239, 239, 239, 1);
+    border: 1px solid black;
+    padding: 5px;
+    border-radius: 5px;
+    margin: auto 10px auto auto;
+    width: auto;
+}
+
+.comment_buttons:hover {
+    background-color: rgba(51, 53, 51, 1);
+    font-weight: bold;
+    color: rgba(207, 219, 213, 1);
+    cursor: pointer;
+}
+
+.comment_buttons:hover a {
+    color: rgba(207, 219, 213, 1);
+}
+
+.comment_buttons button {
+    margin: auto auto auto auto;
+}
+
+.comment_text {
+    margin: auto auto auto 10px;
+}
+
+form {
+    margin: auto 10px auto auto;
+}
+
+.profile_heading {
+    padding-left: 30px;
+}
+
+.profile_details {
+    background-color: rgba(245, 203, 92, 1);
+    padding: 10px 0 10px 30px;
+    font-size: 15px;
+}
+
+.name_label {
+    padding-right: 17px;
+}
+
+.email_label {
+    padding-right: 23px;
+}
+
+.icon_label {
+padding-right: 33px;
+}
+
+.bio_label {
+    padding-right: 36px;
+}
+
+input {
+    display: inline;
 }
