@@ -89,7 +89,7 @@ post '/login' do
   sql = "SELECT * FROM users WHERE email = $1"
   run_sql(sql, [params['email']])
 
-  if params['email'] == '' || params['password_digest'] == '' || run_sql(sql, [params['email']]).to_a == [] || find_user_by_email(params['email'])["password_digest"] != params["password_digest"]
+  if params['email'] == '' || params['password_digest'] == '' || run_sql(sql, [params['email']]).to_a == [] || BCrypt::Password.new(find_user_by_email(params['email'])['password_digest']) != params["password_digest"]
 
     login_error = "Error: Account not found or incorrect details entered"
 
