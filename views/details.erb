@@ -7,20 +7,18 @@
     <div class="postedby_wrap">
         <img class="icon_img" src="<%= find_user_by_id(post['user_id'])["icon"] %>" alt="">
         <p class="postedby_text"> posted by <%= find_user_by_id(post['user_id'])["name"] %> at <%= find_post_by_id(post['id'])['time_created'] %> <%= find_post_by_id(post['id'])['date_created'] %> </p>
-    </div>
 
 <% if find_user_by_id(post['user_id'])["name"] == current_user['name'] %>
 
 <div class="details_buttons_wrap">
-    <div class="details_buttons">
+    <div class="details_buttons edit_button_styling">
         <a href="/posts/<%=post['id']%>/edit">edit</a>
     </div>
-    <div>
         <form action="/posts/<%=post['id']%>" method="post">
             <input type="hidden" name="_method" value="delete">
             <button class="details_buttons">delete</button>
         </form>
-    </div>
+</div>
 </div>
 <% end %>
 </div>
@@ -50,7 +48,9 @@
 <div class="createnew_comment">
     <form action="/comment/<%=post['id']%>" method="post">
         <input type="text" name="comment" id="" style='width:100%'>
-        <button>Comment</button>
+        <br>
+        <br>
+        <button class="login_button right_align_button button_padding">Comment</button>
     </form>
 </div>
 </div>

@@ -1,16 +1,16 @@
 <h1 class="profile_heading">welcome to your profile, <%= user['name'] %> </h1>
 
-<div class="profile_details">
-    <p>name: <%= user['name'] %> </p>
-    <p>email: <%= user['email'] %> </p>
-    <p>icon: <img src="<%= user['icon'] %>" alt=""> </p>
-    <p>location: &#x1F3E0; <%= user['location'] %> </p>
-    <p>bio: <%= user['bio'] %> </p>
+<div class="profile_details_no_button">
+    <p>Name: <%= user['name'] %> </p>
+    <p>Email: <%= user['email'] %> </p>
+    <p>Icon: <img src="<%= user['icon'] %>" alt=""> </p>
+    <p>Location: &#x1F3E0; <%= user['location'] %> </p>
+    <p>Bio: <%= user['bio'] %> </p>
 </div>
 
 <h1 class="profile_heading">Update or add to your existing your details</h1>
 
-<div class="profile_details">
+<div class="profile_details_no_button">
 <form action="/profile/<%= user['id'] %>" method="post">
 <input type="hidden" name="_method" value="patch">
 
@@ -29,7 +29,8 @@
     <label for="">Location:</label>
     <input type="text" name="location" value="<%= user['location'] %>" style='width:100%'>
 <br>
-    <button>Update!</button>
+<br>
+    <button class="login_button right_align_button">Update!</button>
 <br>
 <% if display_error %>
     <%= error_message %>

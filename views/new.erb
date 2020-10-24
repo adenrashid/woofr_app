@@ -1,14 +1,15 @@
-<h1>Post a new Woof!</h1>
+<h1 class="profile_heading">Post a new Woof!</h1>
 
+<div class="profile_details">
 <form action="/posts" method="post">
     <label for="">Woof!</label>
-    <input type="text" name="post_text">
-
-    <label for="">Image</label>
-    <input type="text" name="image">
-
+    <input type="text" name="post_text" style="width: 100%">
+<br>
+    <label for="">Image:</label>
+    <input type="text" name="image" style="width: 100%">
+<br>
     <label for="">Feeling</label>
-    <input type="hidden" name="feeling">
+    <input type="hidden" name="feeling" style="width: 100%">
     <select id="" name="feeling">
         <option type=text value="&#x1F600">&#x1F600;</option>
         <option type=text value="&#x1F60D">&#x1F60D;</option>
@@ -24,5 +25,7 @@
 
     <input type="hidden" name="date_created" value=<%= Time.now.strftime("%d-%m-%Y") %>>
     <input type="hidden" name="time_created" value=<%= Time.now.strftime("%k:%M%p") %>>
-    <button>Woof Woof!</button>
+    <br>
+    <button class="login_button">Woof Woof!</button>
 </form>
+</div>

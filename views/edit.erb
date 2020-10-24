@@ -1,16 +1,17 @@
-<h1>edit post</h1>
+<h1 class="profile_heading">edit post</h1>
 
+<div class="profile_details">
 <form action="/posts/<%=post['id']%>" method="post">
 <input type="hidden" name="_method" value="patch">
 
     <label for="">Woof!</label>
-    <input type="text" name="post_text" value="<%=post['post_text']%>">
-
-    <label for="">image</label>
-    <input type="text" name="image" value="<%=post['image']%>">
-
-    <label for="">feeling</label>
-    <input type="hidden" name="feeling" value="<%=post['feeling']%>">
+    <input type="text" name="post_text" value="<%=post['post_text']%>" style='width:100%'>
+    <br>
+    <label for="">Image:</label>
+    <input type="text" name="image" value="<%=post['image']%>" style='width:100%'>
+    <br>
+    <label for="">Feeling:</label>
+    <input type="hidden" name="feeling" value="<%=post['feeling']%>" style='width:100%'>
     <select id="" name="feeling">
         <option type=text value="&#x1F600">&#x1F600;</option>
         <option type=text value="&#x1F60D">&#x1F60D;</option>
@@ -23,6 +24,7 @@
         <option type=text value="&#x1F415">&#x1F415;</option>
         <option type=text value="&#x1F43E">&#x1F43E;</option>
     </select>
-
-    <button>update</button>
+    <br>
+    <button class="login_button right_align_button">Update</button>
 </form>
+</div>
