@@ -1,0 +1,29 @@
+<div class="profile_heading">
+    <h1> <%= user['name'] %>'s profile </h1>
+</div>
+
+<div class="loggedin-wrap padding_left">
+    <h2>Name: <%= user['name'] %> </h2>
+    <h2>Icon: <img src="<%= user['icon'] %>" alt=""> </h2>
+    <h2>Location: &#x1F3E0; <%= user['location'] %></h2>
+    <h2>Bio: <%= user['bio'] %></h2>
+</div>
+
+<h1 class="profile_heading">Latest posts...</h1>
+
+<% posts.reverse_each do |post| %>
+    <div class="individual_posts">
+        <div class="post_wrap">
+            <a href="/posts/<%=post['id']%>">
+            <img class="image" src="<%= post["image"] %>" alt="">
+            <p class="post_text"><%=post["post_text"]%></p>
+            <p class="feeling_text">feeling: <%= post["feeling"] %></p>
+        </div>    
+            <div class="postedby_wrap">
+                <img class="icon_img" src="<%= find_user_by_id(post['user_id'])['icon'] %>" alt="">
+                <p class="loggedin_text">posted by <%= find_user_by_id(post['user_id'])["name"] %> at <%= find_post_by_id(post['id'])['time_created'] %> <%= find_post_by_id(post['id'])['date_created'] %> </p>
+            </div>
+        </p>
+        </a>
+    </div>
+<% end %> 

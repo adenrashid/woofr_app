@@ -23,7 +23,7 @@ end
 
 get '/' do
   if !logged_in?
-    redirect '/login'
+  redirect '/login'
   end 
 
   posts = run_sql("SELECT * FROM posts;")
@@ -89,7 +89,7 @@ post '/login' do
   sql = "SELECT * FROM users WHERE email = $1"
   run_sql(sql, [params['email']])
 
-  if params['email'] == '' || params['password'] == '' || run_sql(sql, [params['email']]).to_a == []
+  if params['email'] == '' || params['password_digest'] == '' || run_sql(sql, [params['email']]).to_a == []
 
     login_error = "Error: Account not found"
 
@@ -181,7 +181,6 @@ patch '/profile/:id' do
   user = current_user()
 
   if params["name"] == '' || params["email"] == '' || params["icon"] == '' || params['bio'] == '' || params['location'] == '' 
-    'hello'
 
     error_message = 'Error: Field cannot be left blank'
 
@@ -221,4 +220,14 @@ delete '/comment/:id' do
   run_sql(sql, [params['id']])
   
   redirect "/"
+end 
+
+get '/user_profile/:id' do 
+  user = find_user_by_id(params['id'])
+  sql = "SELECT * FROM posts WHERE user_id = $1"
+  posts = run_sql(sql, [params["id"]])
+  erb :user_profile, locals: {
+    user: user,
+    posts: posts
+  } 
 end 

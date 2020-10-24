@@ -108,7 +108,7 @@ body {
 
 .loggedin {
     margin: 20px 0 0 32px;
-    font-size: 20px;
+    font-size: 15px;
     display: flex;
     justify-content: space-between;
 }
@@ -255,8 +255,18 @@ img {
     display: flex;
 }
 
+.postedby_text_wrap {
+    margin: auto;
+    display: flex;
+}
+
+.link_wrap {
+    margin: auto;
+    display: flex;
+}
+
 .postedby_text {
-    margin: auto auto auto 10px;
+    margin-left: 10px;
 }
 
 .comments_wrap {
@@ -358,4 +368,9 @@ input {
 .button_padding {
     margin: 0 10px 0 20px;
     background-color: rgba(239, 239, 239, 1);
+}
+
+.padding_left {
+    padding-left: 30px;
+    font-size: 14px;
 }

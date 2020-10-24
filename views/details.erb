@@ -4,9 +4,11 @@
         <p class="post_text"><%=post["post_text"]%></p>
         <p class="feeling_text">feeling <%= post["feeling"] %></p>
     </div>
-    <div class="postedby_wrap">
-        <img class="icon_img" src="<%= find_user_by_id(post['user_id'])["icon"] %>" alt="">
-        <p class="postedby_text"> posted by <%= find_user_by_id(post['user_id'])["name"] %> at <%= find_post_by_id(post['id'])['time_created'] %> <%= find_post_by_id(post['id'])['date_created'] %> </p>
+    <div class="link_wrap">
+        <a class="postedby_text_wrap" href="/user_profile/<%= post['user_id'] %>">
+                <img class="icon_img" src="<%= find_user_by_id(post['user_id'])["icon"] %>" alt="">
+                <p class="postedby_text"> posted by <%= find_user_by_id(post['user_id'])["name"] %> at <%= find_post_by_id(post['id'])['time_created'] %> <%= find_post_by_id(post['id'])['date_created'] %> </p>
+            </a>
         <% if find_user_by_id(post['user_id'])["name"] == current_user['name'] %>
         <div class="details_buttons_wrap">
             <div class="details_buttons edit_button_styling">
