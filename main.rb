@@ -57,7 +57,7 @@ post '/signup' do
 
   if params['name'] == '' || params['email'] == '' || password == ''
     
-    blank_fields_error = 'Error: You cannot leave a field empty'
+    blank_fields_error = 'Error: Field cannot be left blank'
 
     erb :login, locals: {
       display_blank_error: true, 
@@ -89,9 +89,9 @@ post '/login' do
   sql = "SELECT * FROM users WHERE email = $1"
   run_sql(sql, [params['email']])
 
-  if params['email'] == '' || params['password_digest'] == '' || run_sql(sql, [params['email']]).to_a == []
+  if params['email'] == '' || params['password_digest'] == '' || run_sql(sql, [params['email']]).to_a == [] || find_user_by_email(params['email'])["password_digest"] != params["password_digest"]
 
-    login_error = "Error: Account not found"
+    login_error = "Error: Account not found or incorrect details entered"
 
     erb :login, locals: {
       display_blank_error: false, 
@@ -191,8 +191,9 @@ patch '/profile/:id' do
     }
 
   else 
-    sql = "UPDATE users SET name = $1, email = $2, icon = $3, bio = $4, location = $5 WHERE id = $6;"
-    run_sql(sql, [params["name"], params["email"], params["icon"], params['bio'], params['location'], params['id']])  
+    password = BCrypt::Password.create("#{params['password_digest']}")
+    sql = "UPDATE users SET name = $1, email = $2, password_digest = $3, icon = $4, bio = $5, location = $6 WHERE id = $7;"
+    run_sql(sql, [params["name"], params["email"], password, params["icon"], params['bio'], params['location'], params['id']])  
 
     redirect "/profile/#{params['id']}"
   end 

@@ -26,9 +26,7 @@
     <div class="loggedin_img_text">
       <img class="icon_img" src="<%= current_user()['icon'] %>" alt="">
         <p class="loggedin_text"> 
-        &#x1F43E; logged in as <%= current_user['name'] %> <br>
-        &#x1F3E0; <%= current_user['location'] %> <br>
-        &#x1F436; <%= current_user['bio'] %>
+        &#x1F43E;  logged in as <%= current_user['name'] %>
         </p>
     </div>
         <form action="/logout" method="post">

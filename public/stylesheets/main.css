@@ -131,6 +131,10 @@ body {
     display: flex;
 }
 
+.error {
+    font-size: 20px;
+}
+
 .logout_button {
     font-size: 20px;
     background-color: rgba(232, 237, 223, 1);
