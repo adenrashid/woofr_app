@@ -6,14 +6,14 @@ Try out WOOFR here: https://woofr-project2-sei39.herokuapp.com/
 
 This is an application created for your furry friends - because they deserve their own social media. 
 
-Made with Ruby, HTML and CSS, as well as using PostgreSQL and Sinatra. 
+Made with Ruby, HTML and CSS, as well as using PostgreSQL, Sinatra and Cloudinary. 
 
 There is functionality to sign up, log in, post new "woofs" which include an image, text and "feeling" in the form of an emoji chosen from a drop down menu, see other dog's woofs, update your profile, add an icon, location and bio, comment on other dogs' woofs, and more. 
 
+Functionality: 
 - User accounts (creation, read, update and delete)
-- "Woofs" (creation, read, update and delete)
+- "Woofs" aka posts (creation, read, update and delete)
 - Comments (creation, read, update and delete)
-
 - Upload functionality for images was added with the help of Cloudinary. 
 
 Configuration:
