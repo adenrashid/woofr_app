@@ -6,7 +6,6 @@ require 'pg'
 require 'bcrypt'
 require 'cloudinary'
 require_relative 'db/data_access'
-require 'pry' if development?
 
 include CloudinaryHelper
 
