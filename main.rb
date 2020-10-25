@@ -1,13 +1,24 @@
-     
+require "active_support"
+require "action_view"
 require 'sinatra'
 require 'sinatra/reloader' if development?
 require 'pg'
 require 'bcrypt'
+require 'cloudinary'
 require_relative 'db/data_access'
+require 'pry' if development?
+
+include CloudinaryHelper
 
 also_reload 'db/data_access' if development?
 
 enable :sessions
+
+config = {
+  cloud_name: "woofr",
+  api_key: ENV["CLOUDINARY_KEY"],
+  api_secret: ENV["CLOUDINARY_SECRET"]
+}
 
 def logged_in?
   if session[:user_id]
@@ -82,7 +93,6 @@ post '/signup' do
       error_message: error_message
     }
   end 
-
 end 
 
 post '/login' do
@@ -112,11 +122,21 @@ post '/login' do
 end 
 
 get '/posts/new' do 
+  if !logged_in?
+    redirect '/login'
+  end 
+  
   erb :new
 end 
 
 post '/posts' do 
-  create_post(params['post_text'], params['image'], params['feeling'], current_user['id'], params['date_created'], params['time_created'])
+  if !logged_in?
+    redirect '/login'
+  end 
+
+  uploaded_image = Cloudinary::Uploader.upload(params['image']['tempfile'], config)
+  image_url = uploaded_image["url"]
+  create_post(params['post_text'], image_url, params['feeling'], current_user['id'], params['date_created'], params['time_created'])
   redirect '/'
 end 
 
@@ -142,6 +162,10 @@ get '/posts/:id' do
 end 
 
 get '/posts/:id/edit' do 
+  if !logged_in?
+    redirect '/login'
+  end 
+
   sql = "SELECT * FROM posts WHERE id = $1;"
   results = run_sql(sql, [params['id']])
 
@@ -150,7 +174,11 @@ get '/posts/:id/edit' do
   }
 end 
 
-patch '/posts/:id' do 
+patch '/posts/:id' do
+  if !logged_in?
+    redirect '/login'
+  end 
+
   sql = "UPDATE posts SET post_text = $1, image = $2, feeling = $3 WHERE id = $4;"
   run_sql(sql, [params["post_text"], params["image"], params["feeling"], params['id']])
 
@@ -158,17 +186,29 @@ patch '/posts/:id' do
 end 
 
 delete '/posts/:id' do 
+  if !logged_in?
+    redirect '/login'
+  end 
+
   sql = "DELETE FROM posts WHERE id = $1;"
   run_sql(sql, [params['id']])
   redirect '/'
 end 
 
 post '/comment/:id' do 
+  if !logged_in?
+    redirect '/login'
+  end 
+
   create_comment(current_user['id'], params['id'], params['comment'])
   redirect "/posts/#{params['id']}"
 end 
 
 get '/profile/:id' do 
+  if !logged_in?
+    redirect '/login'
+  end 
+
   user = current_user()
 
   erb :profile, locals: {
@@ -178,6 +218,10 @@ get '/profile/:id' do
 end 
 
 patch '/profile/:id' do 
+  if !logged_in?
+    redirect '/login'
+  end 
+
   user = current_user()
 
   if params["name"] == '' || params["email"] == '' || params["icon"] == '' || params['bio'] == '' || params['location'] == '' 
@@ -200,6 +244,10 @@ patch '/profile/:id' do
 end 
 
 get '/comment/:id/edit' do 
+  if !logged_in?
+    redirect '/login'
+  end 
+
   sql = "SELECT * FROM comments WHERE id = $1;"
   results = run_sql(sql, [params['id']])
 
@@ -209,6 +257,10 @@ get '/comment/:id/edit' do
 end 
 
 patch '/comment/:id' do 
+  if !logged_in?
+    redirect '/login'
+  end 
+
   sql = "UPDATE comments SET comment = $1 WHERE id = $2;"
   run_sql(sql, [params["comment"], params["id"]])
 
@@ -217,6 +269,10 @@ patch '/comment/:id' do
 end 
 
 delete '/comment/:id' do 
+  if !logged_in?
+    redirect '/login'
+  end 
+
   sql = "DELETE FROM comments WHERE id = $1;"
   run_sql(sql, [params['id']])
   
@@ -224,6 +280,10 @@ delete '/comment/:id' do
 end 
 
 get '/user_profile/:id' do 
+  if !logged_in?
+    redirect '/login'
+  end 
+
   user = find_user_by_id(params['id'])
   sql = "SELECT * FROM posts WHERE user_id = $1"
   posts = run_sql(sql, [params["id"]])

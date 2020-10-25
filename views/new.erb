@@ -1,12 +1,12 @@
 <h1 class="profile_heading">Post a new Woof!</h1>
 
 <div class="profile_details">
-<form action="/posts" method="post">
+<form action="/posts" method="post" enctype="multipart/form-data">
     <label for="">Woof!</label>
     <input type="text" name="post_text" style="width: 100%">
 <br>
     <label for="">Image:</label>
-    <input type="text" name="image" style="width: 100%">
+    <input type="file" name="image" style="width: 100%">
 <br>
     <label for="">Feeling</label>
     <input type="hidden" name="feeling" style="width: 100%">
@@ -19,6 +19,13 @@
         <option type=text value="&#x1F62B">&#x1F62B;</option>
         <option type=text value="&#x1F640">&#x1F640;</option>
         <option type=text value="&#x1F62D">&#x1F62D;</option>
+        <option type=text value="&#x1F610">&#x1F610;</option>
+        <option type=text value="&#x1F618">&#x1F618;</option>
+        <option type=text value="&#x1F62C">&#x1F62C;</option>
+        <option type=text value="&#x1F61E">&#x1F61E;</option>
+        <option type=text value="&#x1F634">&#x1F634;</option>
+        <option type=text value="&#x1F620">&#x1F620;</option>
+        <option type=text value="&#x1F609">&#x1F609;</option>
         <option type=text value="&#x1F415">&#x1F415;</option>
         <option type=text value="&#x1F43E">&#x1F43E;</option>
     </select>
