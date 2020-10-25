@@ -1,13 +1,9 @@
-require "active_support"
-require "action_view"
 require 'sinatra'
 require 'sinatra/reloader' if development?
 require 'pg'
 require 'bcrypt'
 require 'cloudinary'
 require_relative 'db/data_access'
-
-include CloudinaryHelper
 
 also_reload 'db/data_access' if development?
 
