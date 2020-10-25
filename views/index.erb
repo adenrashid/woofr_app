@@ -13,7 +13,7 @@
         <p class="feeling_text">feeling: <%= post["feeling"] %></p>
     </div>    
         <div class="postedby_wrap">
-            <img class="icon_img" src="<%= find_user_by_id(post['user_id'])['icon'] %>" alt="">
+            <img class="icon_img img_max_width" src="<%= find_user_by_id(post['user_id'])['icon'] %>" alt="">
             <p class="loggedin_text">posted by <%= find_user_by_id(post['user_id'])["name"] %> at <%= find_post_by_id(post['id'])['time_created'] %> <%= find_post_by_id(post['id'])['date_created'] %> </p>
         </div>
     </p>

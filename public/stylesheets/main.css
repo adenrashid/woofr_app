@@ -116,6 +116,7 @@ body {
 .loggedin-wrap {
     background-color: rgba(245, 203, 92, 1);
     border-radius: 5px;
+    height: 60px;
 }
 
 .logout_button_wrap {
@@ -129,6 +130,7 @@ body {
 
 .loggedin_img_text {
     display: flex;
+    height: 60px;
 }
 
 .error {
@@ -225,7 +227,7 @@ img {
     border: 2px solid black;
     padding: 5px;
     border-radius: 5px;
-    margin: 10px 10px 10px 30px;
+    margin: 7px 10px 10px 30px;
     text-align: center;
 }
 
@@ -261,16 +263,26 @@ img {
 
 .postedby_wrap {
     display: flex;
+    height: 50px;
 }
 
 .postedby_text_wrap {
     display: flex;
 }
 
+.img_max_width {
+    max-width: 50px;
+}
+
+.icon_max_width {
+    max-width: 200px;
+}
+
 .link_wrap {
     margin: auto;
     display: flex;
     justify-content: space-between;
+    height: 50px;
 }
 
 .postedby_text {
