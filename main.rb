@@ -4,7 +4,6 @@ require 'pg'
 require 'bcrypt'
 require 'cloudinary'
 require_relative 'db/data_access'
-require 'pry'
 
 also_reload 'db/data_access' if development?
 
