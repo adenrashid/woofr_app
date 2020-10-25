@@ -14,6 +14,7 @@ There is functionality to sign up, log in, post new "woofs" which include an ima
 - "Woofs" (creation, read, update and delete)
 - Comments (creation, read, update and delete)
 
+- Upload functionality for images was added with the help of Cloudinary. 
 
 Configuration:
 Gems needed:
@@ -21,6 +22,7 @@ Gems needed:
 gem 'sinatra'
 gem 'pg'
 gem 'bcrypt'
+gem 'cloudinary'
 
 Database creation:
 As per above the database used for this is PostgreSQL ("pg"). A pg database must be active on the server machine.
