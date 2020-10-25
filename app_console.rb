@@ -1,6 +1,6 @@
-require 'pg'
-require 'pry'
-require_relative 'db/data_access'
+# require 'pg'
+# require 'pry'
+# require_relative 'db/data_access'
 
-binding.pry
+# binding.pry
 
