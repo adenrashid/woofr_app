@@ -260,13 +260,13 @@ img {
 }
 
 .postedby_text_wrap {
-    margin: auto;
     display: flex;
 }
 
 .link_wrap {
     margin: auto;
     display: flex;
+    justify-content: space-between;
 }
 
 .postedby_text {
