@@ -11,7 +11,7 @@
 <h1 class="profile_heading">Update or add to your existing your details</h1>
 
 <div class="profile_details_no_button">
-<form action="/profile/<%= user['id'] %>" method="post">
+<form action="/profile/<%= user['id'] %>" method="post" enctype="multipart/form-data">
 <input type="hidden" name="_method" value="patch">
 
     <label class="name_label" for="">Name:</label>
@@ -24,7 +24,7 @@
     <input type="password" name="password_digest" value="<%= user['password_digest'] %>" style='width:100%'>
 <br>
     <label class="icon_label" for="">Icon:</label>
-    <input type="text" name="icon" value="<%= user['icon'] %>" style='width:100%'>
+    <input type="file" name="icon" style='width:100%'>
 <br>
     <label class="bio_label" for="">Bio:</label>
     <input type="text" name="bio" value="<%= user['bio'] %>" style='width:100%'>

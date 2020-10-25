@@ -4,6 +4,7 @@ require 'pg'
 require 'bcrypt'
 require 'cloudinary'
 require_relative 'db/data_access'
+require 'pry'
 
 also_reload 'db/data_access' if development?
 
@@ -174,8 +175,15 @@ patch '/posts/:id' do
     redirect '/login'
   end 
 
+  if params['image'] == nil 
+    image_url = find_post_by_id(params['id'])['image']
+  else 
+    uploaded_image = Cloudinary::Uploader.upload(params['image']['tempfile'], config)
+    image_url = uploaded_image["url"]
+  end 
+  
   sql = "UPDATE posts SET post_text = $1, image = $2, feeling = $3 WHERE id = $4;"
-  run_sql(sql, [params["post_text"], params["image"], params["feeling"], params['id']])
+  run_sql(sql, [params["post_text"], image_url, params["feeling"], params['id']])
 
   redirect "/posts/#{params['id']}"
 end 
@@ -219,7 +227,7 @@ patch '/profile/:id' do
 
   user = current_user()
 
-  if params["name"] == '' || params["email"] == '' || params["icon"] == '' || params['bio'] == '' || params['location'] == '' 
+  if params["name"] == '' || params["email"] == '' || params['bio'] == '' || params['location'] == '' 
 
     error_message = 'Error: Field cannot be left blank'
 
@@ -231,8 +239,16 @@ patch '/profile/:id' do
 
   else 
     password = BCrypt::Password.create("#{params['password_digest']}")
+
+    if params['icon'] == nil 
+      image_url = user['icon']
+    else 
+      uploaded_image = Cloudinary::Uploader.upload(params['icon']['tempfile'], config)
+      image_url = uploaded_image["url"]
+    end 
+
     sql = "UPDATE users SET name = $1, email = $2, password_digest = $3, icon = $4, bio = $5, location = $6 WHERE id = $7;"
-    run_sql(sql, [params["name"], params["email"], password, params["icon"], params['bio'], params['location'], params['id']])  
+    run_sql(sql, [params["name"], params["email"], password, image_url, params['bio'], params['location'], params['id']])  
 
     redirect "/profile/#{params['id']}"
   end 
