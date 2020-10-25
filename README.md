@@ -2,6 +2,8 @@ WOOFR - Twitter for dogs.
 
 Try out WOOFR here: https://woofr-project2-sei39.herokuapp.com/
 
+![WOOFR APP IMAGE](/WOOFR_app.png)
+
 This is an application created for your furry friends - because they deserve their own social media. 
 
 Made with Ruby, HTML and CSS, as well as using PostgreSQL and Sinatra. 
