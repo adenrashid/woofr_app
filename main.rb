@@ -226,7 +226,7 @@ patch '/profile/:id' do
 
   user = current_user()
 
-  if params["name"] == '' || params["email"] == '' || params['bio'] == '' || params['location'] == '' 
+  if params["name"] == '' || params["email"] == '' || params['bio'] == '' || params['location'] == '' || params["password_digest"] == ''
 
     error_message = 'Error: Field cannot be left blank'
 

@@ -115,8 +115,7 @@ body {
 
 .loggedin-wrap {
     background-color: rgba(245, 203, 92, 1);
-    border-radius: 5px;
-    height: 60px;
+    border-radius: 5px
 }
 
 .logout_button_wrap {
