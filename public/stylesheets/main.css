@@ -394,3 +394,12 @@ input {
     padding-left: 30px;
     font-size: 14px;
 }
+
+.icon_height_adjusted {
+    height: 60px;
+}
+
+.icon_height_width_adjust {
+    height: 50px;
+    width: 50px
+}

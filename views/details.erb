@@ -28,7 +28,7 @@
         <% comments.each do |comment| %>
             <div class="individual_comment_wrap">
                 <div class="individual_comment"> 
-                    <img class="icon_img" src="<%= find_user_by_id(comment['user_id'])['icon'] %>" alt=""> <p class="comment_text"> <%= comment['comment'] %> - commented by <%= find_user_by_id(comment['user_id'])['name'] %> </p>
+                    <img class="icon_img icon_height_width_adjust" src="<%= find_user_by_id(comment['user_id'])['icon'] %>" alt=""> <p class="comment_text"> <%= comment['comment'] %> - commented by <%= find_user_by_id(comment['user_id'])['name'] %> </p>
                     <% if current_user["name"] == find_user_by_id(comment['user_id'])['name'] %>
                     <div class="comment_buttons_wrap">
                         <div class="comment_buttons">

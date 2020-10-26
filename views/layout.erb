@@ -24,7 +24,7 @@
   <div class="loggedin">
     <% if logged_in? %>
     <div class="loggedin_img_text">
-      <img class="icon_img" src="<%= current_user()['icon'] %>" alt="">
+      <img class="icon_img icon_height_adjusted" src="<%= current_user()['icon'] %>" alt="">
         <p class="loggedin_text"> 
         &#x1F43E;  logged in as <%= current_user['name'] %>
         </p>
