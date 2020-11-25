@@ -2,6 +2,10 @@ WOOFR - Twitter for dogs.
 
 Try out WOOFR here: https://woofr-project2-sei39.herokuapp.com/
 
+Username: Test 
+Email: test@test.com
+Password: test
+
 ![WOOFR APP IMAGE](/WOOFR_app.png)
 
 This is an application created for your furry friends - because they deserve their own social media. 
