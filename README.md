@@ -1,4 +1,4 @@
-WOOFR - Twitter for dogs. 
+### WOOFR - Twitter for dogs. 
 
 Try out WOOFR here: https://woofr-project2-sei39.herokuapp.com/
 
